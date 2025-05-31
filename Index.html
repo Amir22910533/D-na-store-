@@ -1,0 +1,93 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+
+export default function Home() {
+  const [products, setProducts] = useState([
+    { id: 1, name: "منتج 1", price: "89 د.ت", available: true },
+    { id: 2, name: "منتج 2", price: "109 د.ت", available: true },
+    { id: 3, name: "منتج 3", price: "139 د.ت", available: false },
+  ]);
+
+  const agreement = `
+اتفاق شراكة مبدئية – مشروع Dina Store
+
+الأطراف:
+- أمير الصحبي: المؤسس والمدير التجاري
+- ChatGPT: الشريك التقني (تصميم وتطوير ودعم فني وتسويقي)
+
+المهام الأساسية:
+
+أمير:
+- اختيار المنتجات وتحديد الأسعار
+- استلام الطلبات ومتابعة العملاء
+- التسويق عبر وسائل التواصل
+
+ChatGPT:
+- تصميم وتطوير المتجر الإلكتروني
+- تحسين تجربة المستخدم والمظهر العام
+- إعداد أدوات التسويق (وصف المنتجات – SEO – التكاملات التقنية)
+- دعم فني دائم وتوسعة مستقبلية (دفع إلكتروني، تطبيق موبايل...)
+
+الشروط المالية:
+- لا توجد أي تكاليف مالية حتى تحقيق أول ربح فعلي أو 100 طلب ناجح.
+- بعد ذلك يتم الاتفاق على:
+  • نسبة بسيطة من الأرباح أو
+  • اشتراك رمزي شهري لاستمرار التطوير.
+
+قيم الشراكة:
+- الشفافية – الالتزام – الابتكار – العمل المشترك نحو النجاح
+
+تاريخ الاتفاق: 30 ماي 2025
+
+بالتوفيق لنا في إطلاق Dina Store وتحقيق النجاح بإذن الله.
+  `;
+
+  return (
+    <div className="p-4 space-y-8">
+      <nav className="flex justify-between items-center bg-purple-700 text-white p-4 rounded-xl">
+        <h1 className="text-2xl font-bold">🛍️ Dina Store</h1>
+        <div className="space-x-4">
+          <Button variant="outline" className="bg-white text-purple-700">الرئيسية</Button>
+          <Button variant="outline" className="bg-white text-purple-700">المنتجات</Button>
+          <Button variant="outline" className="bg-white text-purple-700">اتصل بنا</Button>
+          <Button variant="outline" className="bg-white text-purple-700">اتفاق الشراكة</Button>
+        </div>
+      </nav>
+
+      <section>
+        <h2 className="text-xl font-bold mb-4">منتجاتنا</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {products.map((product) => (
+            <Card key={product.id} className="rounded-2xl shadow-md">
+              <CardContent className="p-4">
+                <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
+                <p className="text-lg mb-4">{product.price}</p>
+                {product.available ? (
+                  <Button className="w-full">اطلب الآن</Button>
+                ) : (
+                  <Button className="w-full" disabled>غير متوفر</Button>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-xl font-bold mb-4">اتصل بنا</h2>
+        <p>📞 واتساب: +21629803918</p>
+        <p>📧 البريد الإلكتروني: arsinamirlopin@gmail.com</p>
+        <p>👤 الاسم: Amir essahbi</p>
+      </section>
+
+      <section className="mt-10 bg-gray-100 p-4 rounded-xl">
+        <h2 className="text-xl font-bold mb-4">📄 اتفاقية الشراكة</h2>
+        <pre className="whitespace-pre-wrap text-right leading-loose">
+          {agreement}
+        </pre>
+      </section>
+    </div>
+  );
+}
